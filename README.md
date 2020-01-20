@@ -12,4 +12,5 @@
 - expo init ProjectName
 
 # 프로젝트 실행
-- npm start   or   expo start   or   yarn start
+- 1. AndroidStudio 에뮬레이터 실행
+- 2. expo start로 프로젝트 실행(package.json 참고)
