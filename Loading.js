@@ -1,9 +1,11 @@
+//로딩화면
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';   //상태이상바 추가
 
 export default function Loading() {
     return (
         <View style={styles.container}>
+            <StatusBar barStyle="dark-content" />
             <Text style={styles.text}>Getting the fuckings weather</Text>
         </View>
     );
