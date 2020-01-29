@@ -69,11 +69,17 @@ const weatherOptions = {
         title: "먼지",
         subtitle: "외부활동시 마스크가 필요할 수 있습니다",
     },
+    loading: {
+        iconName: "weather-fog",
+        gradient: ["#4DA0B0", "#D39D38"],
+        title: "먼지",
+        subtitle: "외부활동시 마스크가 필요할 수 있습니다",
+    }
 }
 
-export default function Weather({ temp, condition }) {
+export default function Weather({ temp, condition, village }) {
     // console.log(temp)        //온도
-    console.log(condition)   //날씨
+    // console.log(condition)   //날씨
     return (
         <LinearGradient
             colors={weatherOptions[condition].gradient} //그라데이션 색
@@ -89,7 +95,10 @@ export default function Weather({ temp, condition }) {
                     name={weatherOptions[condition].iconName}      //아이콘
                     color="white"   //아이콘 색깔
                 />
+                {/* 온도 */}
                 <Text style={styles.temp}>{temp}°C</Text>
+                {/* 동네명 */}
+                <Text style={styles.village}>{village}</Text>
             </View >
 
             {/* 글 */}
@@ -109,7 +118,7 @@ export default function Weather({ temp, condition }) {
 //PropTypes는 받은 데이터가 유효한지 확인하는데 사용
 Weather.propTypes = {
     temp: PropTypes.number.isRequired,      //temp로 받은게 number가 아니면 오류
-    condition: PropTypes.oneOf([        //oneOf는 하나만 받겠다?
+    condition: PropTypes.oneOf([            //oneOf는 밑에 나열된 것중 하나만 받겠다.
         "Thunderstorm",
         "Drizzle",
         "Rain",
@@ -132,6 +141,10 @@ const styles = StyleSheet.create({
     temp: {
         fontSize: 36,
         color: "white"
+    },
+    village: {
+        fontSize: 40,
+        color: "black"
     },
     halfContainer: {
         flex: 1,

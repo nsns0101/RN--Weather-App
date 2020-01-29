@@ -25,6 +25,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "React-Native Weather App",
+    "githubUrl": "https://github.com/nsns0101/RN--Weather-App"
   }
 }

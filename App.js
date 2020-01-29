@@ -11,26 +11,26 @@ import parseErrorStack from 'react-native/Libraries/Core/Devtools/parseErrorStac
 const API_KEY = "4f63d82ac712979f28797a28187a3d28";
 
 export default class extends React.Component {
-  state = {
-    isLoading: true,
-    condition: "Clear",
-  };
+  state = {};     //온도와 날씨, 동네를 담을 객체
 
   //날씨정보 얻어오는 함수
   getWeather = async (latitude, longitude) => {
     const {
       data: {
         main: { temp },     //data.main.temp의 비구조할당
-        weather             //data.weather의 비구조할당
+        weather,             //data.weather의 비구조할당
+        name             //현재 위치(동네)
       }                          //&units=metric는 섭씨온도
     } = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}&units=metric`);
     const kkk = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}&units=metric`);
-    console.log(kkk);
+    // console.log(kkk);
+    console.log(name);
     //로그로 보면 data.main.temp가 온도임
     this.setState({
-      isLoading: false,
+      // isLoading: false,
       temp,
-      condition: weather[0].main
+      condition: weather[0].main,
+      village: name,
     });
   };
 
@@ -43,7 +43,7 @@ export default class extends React.Component {
       //latitude = 위도, longitude = 경도
       this.getWeather(coords.latitude, coords.longitude);
       this.setState({ isLoading: false });
-      console.log("위도경도 : ", coords)
+      // console.log("위도경도 : ", coords)
     }
     //권한 요청을 거부할 경우 
     catch (error) {
@@ -54,13 +54,18 @@ export default class extends React.Component {
   componentDidMount() {
     this.getLocation();
   }
+
   render() {
-    const { isLoading, temp, condition } = this.state;
+    const { temp, condition, village } = this.state;
+    // const { temp, condition, isLoading } = this.state;
+
     // console.log(isLoading);   //로딩상태
     // console.log(temp);        //온도
+    console.log(condition)
     //Weather에 temp라는 값을 던져줌
-    return isLoading ? <Loading /> : <Weather temp={Math.round(temp)} condition={condition} />;
+    return condition ? <Weather temp={Math.round(temp)} condition={condition} village={village} /> : <Loading />;
 
   };
+
 }
 
