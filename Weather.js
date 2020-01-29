@@ -34,7 +34,7 @@ const weatherOptions = {
         subtitle: "약한 비가 내리고 있습니다.",
     },
     Rain: {     //비
-        iconName: "weather-???",
+        iconName: "weather-pouring",
         gradient: ["#00C6FB", "#005BEA"],
         title: "비",
         subtitle: "비가 오니 외출 시 우산을 챙기세요",
@@ -58,7 +58,7 @@ const weatherOptions = {
         subtitle: "안개로 앞이 잘 보이지 않을 수 있습니다",
     },
     Mist: {  //옅은 안개
-        iconName: "weather-weather-fog",
+        iconName: "weather-fog",
         gradient: ["#4DA0B0", "#D39D38"],
         title: "옅은 안개",
         subtitle: "안개로 앞이 잘 보이지 않을 수 있습니다",
